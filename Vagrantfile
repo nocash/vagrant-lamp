@@ -35,35 +35,34 @@ Vagrant::Config.run do |config|
   config.vm.share_folder "htdocs", "/var/www", "htdocs"
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding 
+  # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
-  #
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "chef/cookbooks"
     chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/data_bags"
 
-	chef.add_recipe "apt"
-	chef.add_recipe "build-essential"
-	chef.add_recipe "ubuntu"
-	chef.add_recipe "apache2"
-	chef.add_recipe "mysql::client"
-	chef.add_recipe "mysql::server"
-	chef.add_recipe "php"
-	chef.add_recipe "php::module_curl"
-	chef.add_recipe "php::module_mysql"
-	chef.add_recipe "apache2::mod_php5"
-	chef.add_recipe "apache2::mod_rewrite"
+    chef.add_recipe "apt"
+    chef.add_recipe "build-essential"
+    chef.add_recipe "ubuntu"
+    chef.add_recipe "apache2"
+    chef.add_recipe "mysql::client"
+    chef.add_recipe "mysql::server"
+    chef.add_recipe "php"
+    chef.add_recipe "php::module_curl"
+    chef.add_recipe "php::module_mysql"
+    chef.add_recipe "apache2::mod_php5"
+    chef.add_recipe "apache2::mod_rewrite"
 
-	chef.json = {
-		:apache => {
-			:user => "vagrant",
-			:group => "vagrant"
-		},
-		:mysql => {
-			:server_root_password => "root",
-			:allow_remote_root => true
-		}
-	}
+    chef.json = {
+      :apache => {
+        :user => "vagrant",
+        :group => "vagrant"
+      },
+      :mysql => {
+        :server_root_password => "root",
+        :allow_remote_root => true
+      }
+    }
   end
 end
